@@ -8,41 +8,37 @@ inside that isn't connected to the water around the island). One cell is a squar
  rectangular, width and height don't exceed 100. Determine the perimeter of the island.
 */
 
-
 class Solution {
-public:
-    int islandPerimeter(vector<vector<int>>& grid) {
+    public int islandPerimeter(int[][] grid) {
         int count = 0; 
-        if (grid.empty()){
-            return count; 
-        }
-        int rowLen = 4;//(int)grid.size();
-        int columnLen = 4;//(int)grid[0].size();
-        for (int row = 0; row < rowLen; row ++){
-            for (int col = 0; col < columnLen; col ++){
+        for(int row = 0; row < grid.length; row++){
+            for (int col = 0; col< grid[0].length; col++){
                 if (grid[row][col] == 1){
-                    int points = 4;//if grid is all alone the answer is 4
-                    if (col > 0){
-                        if (grid[row][col-1] == 1){//check left
+                    int points = 4; 
+                    if (col > 0){//check left 
+                        if (grid[row][col-1] == 1){
                             points-=1; 
-                        }     
-                    }if (col<columnLen){//check right
-                        if (grid[row][col+1] ==1){
-                            points -=1; 
-                        }
-                    }if (row>0){//check above 
-                        if (grid[row-1][col] == 1){
-                            points -=1;
-                        } 
-                    }if (row<rowLen-1){//check below
-                        if (grid[row+1][col]==1){
-                            points -=1; 
                         }
                     }
-                    count += points;
-                }
+                    if (col<grid[0].length){//check right
+                        if (grid[row][col+1] == 1){
+                            points-=1; 
+                        }
+                    }
+                    if (row>0){//check above
+                        if (grid[row-1][col] == 1){
+                            points-=1; 
+                        }
+                    }
+                    if (row < grid.length-1){//check below
+                        if (grid[row+1][col] == 1){
+                            points-=1; 
+                        }
+                    }
+                    count += points; 
+                } 
             }
         }
         return count; 
     }
-};
+}
